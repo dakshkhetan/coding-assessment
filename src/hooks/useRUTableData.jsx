@@ -11,7 +11,7 @@ const parseDataAndArrangeProducts = (data) => {
 	const grid4 = new Array(20).fill(null);
 
 	// function to check if no 2 products are adjacent to each other and then only place it in a grid
-	const placeProductInGrid = (product, ...grids) => {
+	const placeProductInGrid = (product, grids) => {
 		for (let grid of grids) {
 			for (let i = 0; i < grid.length; i++) {
 				if (
@@ -29,26 +29,24 @@ const parseDataAndArrangeProducts = (data) => {
 
 	// loop over data and place products in grids
 	// check for Core i4 and Core i5 products first to satisfy given constraint
-	for (let i = 0; i < data.length; i++) {
-		const { product, repeat } = data[i];
-
+	data.forEach(({ product, repeat }) => {
 		for (let j = 0; j < repeat; j++) {
 			// place the i4 and i5 products in grid 1 and 2 first
-			if (product === "Core i4" || product === "Core i5") {
-				if (placeProductInGrid(product, grid1, grid2)) continue;
+			// and then place other products in all grids
+			const grids =
+				product === "Core i4" || product === "Core i5"
+					? [grid1, grid2]
+					: [grid1, grid2, grid3, grid4];
+			if (placeProductInGrid(product, grids)) {
+				continue;
 			} else {
-				// place all other products in all grids
-				if (placeProductInGrid(product, grid1, grid2, grid3, grid4))
-					continue;
-				else {
-					// product could not be placed
-					// throw an error maybe?
-				}
+				// product could not be placed
+				// error
 			}
 		}
-	}
+	});
 
-	// add all grids to the result array
+	// add all grids to the result array, notice the order: Grid 1 -> 3 -> 2 -> 4
 	grid1.forEach((product, i) => {
 		result.push({ product, grid: 1, ru: i });
 	});
