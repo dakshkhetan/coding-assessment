@@ -1,0 +1,63 @@
+export const RU_TABLE_CONSTANTS = {
+	TABLE_HEADING: "TAPE-IN DB VIEW",
+	COLUMN_NAMES: [
+		{ name: "Grid", span: 2, isRotated: true },
+		{ name: "Diode", span: 2, isRotated: true },
+		{ name: "Unmask", span: 2, isRotated: true },
+		{ name: "RU#", span: 2, isRotated: true },
+		{ name: "Seat UUID", span: 64, isRotated: false },
+		{ name: "RU#", span: 2, isRotated: true },
+		{ name: "Unmask", span: 2, isRotated: true },
+		{ name: "Diode", span: 2, isRotated: true },
+		{ name: "Grid", span: 2, isRotated: true },
+	],
+	MIDHALF_TEXT: "MIDHALF",
+	MISC_BLOCK_TEXT: "MISC Block",
+	GRID_SIZE: 20,
+};
+
+export const COLOR_MAP = {
+	TABLE: {
+		HEADER_BG: "#2C4D75",
+		GRIDS_BG: {
+			1: "#0F2906",
+			2: "#6C8A2E",
+			3: "#4D5920",
+			4: "#6190D6",
+		},
+	},
+	PRODUCT_BG: {
+		"Core i1": "#272B36",
+		"Core i2": "#7097F6",
+		"Core i3": "#92C3C8",
+		"Core i4": "#9DBD91",
+		"Core i5": "#2F6555",
+		"Core i6": "#6DE868",
+		"Core i7": "#4D86C6",
+		"Core i8": "#D7A6F1",
+		"Core i9": "#A2C543",
+		"Core i10": "#E4F267",
+		"Core i11": "#0B1A78",
+		"Core i12": "#DAB192",
+		"Core i13": "#85CDF4",
+		"Core i14": "#62B687",
+		"Core i15": "#AD5D6C",
+		"Core i16": "#E1EF67",
+		"Core i17": "#84E28E",
+		"Core i18": "#941DB4",
+		"Core i19": "#3975BA",
+		"Core i20": "#62D243",
+		"Core i21": "#CF40BA",
+		"Core i22": "#7B8DBB",
+		"Core i23": "#EABF43",
+		"Core i24": "#D2DFE1",
+		"Core i25": "#E3EAFC",
+		"Core i26": "#C65696",
+	},
+	PRODUCT_TEXT: {
+		"Core i1": "#FFFFFF",
+		"Core i5": "#FFFFFF",
+		"Core i11": "#FFFFFF",
+		// remaining products have black text
+	},
+};
