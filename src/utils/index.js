@@ -13,10 +13,18 @@ export const checkDataValidity = (data) => {
 	return sum === 80;
 };
 
+// https://stackoverflow.com/a/46545530
+export const shuffleArray = (unshuffled) => {
+	const shuffled = unshuffled
+		.map((value) => ({ value, sort: Math.random() }))
+		.sort((a, b) => a.sort - b.sort)
+		.map(({ value }) => value);
+
+	return shuffled;
+};
+
 // function to parse data and arrange products as per given constraints
 export const parseDataAndArrangeProducts = (data) => {
-	// TODO: Efficient use of space (avoiding vertical placement of similar products)
-
 	const result = [];
 
 	// create grids placeholder of size 20 each
@@ -48,15 +56,18 @@ export const parseDataAndArrangeProducts = (data) => {
 		for (let j = 0; j < repeat; j++) {
 			// place the i4 and i5 products in grid 1 and 2 first
 			// and then place other products in all grids
-			const grids =
+			// also shuffle the grids to effectively distribute the products
+			const targetGrids =
 				product === "Core i4" || product === "Core i5"
-					? [grid1, grid2]
-					: [grid1, grid2, grid3, grid4];
-			if (placeProductInGrid(product, grids)) {
+					? shuffleArray([grid1, grid2])
+					: shuffleArray([grid1, grid2, grid3, grid4]);
+			if (placeProductInGrid(product, targetGrids)) {
 				continue;
 			} else {
-				// product could not be placed
-				// error
+				// if product could not be placed in any grid, log error
+				console.log(
+					`Error: "${product}" could not be placed in any grid.`
+				);
 			}
 		}
 	});
@@ -97,18 +108,25 @@ export const separateDataGridWise = (data) => {
 };
 
 export const sendTelegramAlert = async (message) => {
-	const BOT_CONFIG = {
-		token: "5600989116:AAHKKeN2XrDoYN33pkwYuekp2t9GzqBFXWc",
-		chatId: "-814581546",
-	};
-
 	try {
+		const { VITE_TELEGRAM_BOT_TOKEN, VITE_TELEGRAM_BOT_CHAT_ID } =
+			import.meta.env;
+
+		if (!VITE_TELEGRAM_BOT_TOKEN || !VITE_TELEGRAM_BOT_CHAT_ID) {
+			throw new Error("Missing Telegram Bot Token or Chat ID");
+		}
+
+		const BOT_CONFIG = {
+			token: VITE_TELEGRAM_BOT_TOKEN,
+			chatId: VITE_TELEGRAM_BOT_CHAT_ID,
+		};
+
 		await fetch(
 			`https://api.telegram.org/bot${BOT_CONFIG.token}/sendMessage?chat_id=${BOT_CONFIG.chatId}&text=${message}`,
 			{ method: "GET" }
 		);
-		// console.log("** TELEGRAM API SUCCESS **");
+		// console.log("TELEGRAM API SUCCESS **");
 	} catch (err) {
-		console.log("** TELEGRAM API ERROR ::", err);
+		console.log("TELEGRAM API ERROR ::", err);
 	}
 };
