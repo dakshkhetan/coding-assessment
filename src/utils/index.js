@@ -1,3 +1,13 @@
+export const checkDataValidity = (data) => {
+	let sum = 0;
+
+	data.forEach(({ repeat }) => {
+		sum += repeat;
+	});
+
+	return sum === 80;
+};
+
 export const separateDataGridWise = (data) => {
 	// TODO: low priority
 	// const GRIDS = [1, 2, 3, 4];

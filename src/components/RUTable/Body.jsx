@@ -2,8 +2,11 @@ import useRUTablePopulateRows from "@/hooks/useRUTablePopulateRows";
 import { RU_TABLE_CONSTANTS } from "@/constants";
 
 const Body = () => {
-	const { grid1And2DataRows, grid3And4DataRows } = useRUTablePopulateRows();
+	const { grid1And2DataRows, grid3And4DataRows, error } =
+		useRUTablePopulateRows();
 	const { MIDHALF_TEXT, MISC_BLOCK_TEXT } = RU_TABLE_CONSTANTS;
+
+	if (error) return <h1>Error in provided data</h1>;
 
 	return (
 		<>

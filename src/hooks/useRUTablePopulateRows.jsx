@@ -8,7 +8,7 @@ import { RU_TABLE_CONSTANTS } from "@/constants";
 const useRUTablePopulateRows = () => {
 	const { GRID_SIZE } = RU_TABLE_CONSTANTS;
 
-	const { data } = useRUTableData();
+	const { data, error } = useRUTableData();
 
 	const [grid1And2DataRows, setGrid1And2DataRows] = useState([]);
 	const [grid3And4DataRows, setGrid3And4DataRows] = useState([]);
@@ -16,6 +16,8 @@ const useRUTablePopulateRows = () => {
 	const [activeUnmaskProduct, setActiveUnmaskProduct] = useState(null);
 
 	useEffect(() => {
+		if (!data) return;
+
 		const getPopulateRowsForGridPair = (gridX, gridY) => {
 			const dataRows = [];
 
@@ -48,7 +50,7 @@ const useRUTablePopulateRows = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [activeUnmaskProduct]);
 
-	return { grid1And2DataRows, grid3And4DataRows };
+	return { grid1And2DataRows, grid3And4DataRows, error };
 };
 
 export default useRUTablePopulateRows;
