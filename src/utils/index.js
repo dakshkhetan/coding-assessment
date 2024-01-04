@@ -109,7 +109,7 @@ export const separateDataGridWise = (data) => {
 
 export const sendTelegramAlert = async (message) => {
 	try {
-		// console.log(import.meta.env);
+		console.log(import.meta.env);
 
 		const { VITE_APP_TELEGRAM_BOT_TOKEN, VITE_APP_TELEGRAM_BOT_CHAT_ID } =
 			import.meta.env;
