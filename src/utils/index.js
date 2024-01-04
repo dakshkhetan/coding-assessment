@@ -109,16 +109,18 @@ export const separateDataGridWise = (data) => {
 
 export const sendTelegramAlert = async (message) => {
 	try {
-		const { VITE_TELEGRAM_BOT_TOKEN, VITE_TELEGRAM_BOT_CHAT_ID } =
+		// console.log(import.meta.env);
+
+		const { VITE_APP_TELEGRAM_BOT_TOKEN, VITE_APP_TELEGRAM_BOT_CHAT_ID } =
 			import.meta.env;
 
-		if (!VITE_TELEGRAM_BOT_TOKEN || !VITE_TELEGRAM_BOT_CHAT_ID) {
+		if (!VITE_APP_TELEGRAM_BOT_TOKEN || !VITE_APP_TELEGRAM_BOT_CHAT_ID) {
 			throw new Error("Missing Telegram Bot Token or Chat ID");
 		}
 
 		const BOT_CONFIG = {
-			token: VITE_TELEGRAM_BOT_TOKEN,
-			chatId: VITE_TELEGRAM_BOT_CHAT_ID,
+			token: VITE_APP_TELEGRAM_BOT_TOKEN,
+			chatId: VITE_APP_TELEGRAM_BOT_CHAT_ID,
 		};
 
 		await fetch(
