@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { RU_TABLE_CONSTANTS, COLOR_MAP } from "@/constants";
 
+// RU Table Row component (for Table Body)
 const Row = ({
 	index,
 	elementX,

@@ -5,6 +5,7 @@ import Row from "@/components/RUTable/Row";
 import useRUTableData from "@/hooks/useRUTableData";
 import { RU_TABLE_CONSTANTS } from "@/constants";
 
+// custom hook to populate data rows for the RU Table
 const useRUTablePopulateRows = () => {
 	const { GRID_SIZE } = RU_TABLE_CONSTANTS;
 
@@ -13,7 +14,7 @@ const useRUTablePopulateRows = () => {
 	const [grid1And2DataRows, setGrid1And2DataRows] = useState([]);
 	const [grid3And4DataRows, setGrid3And4DataRows] = useState([]);
 
-	const [activeUnmaskProduct, setActiveUnmaskProduct] = useState(null);
+	const [activeUnmaskProduct, setActiveUnmaskProduct] = useState(null); // currently active product to unmask
 
 	useEffect(() => {
 		if (!data) return;
@@ -22,6 +23,8 @@ const useRUTablePopulateRows = () => {
 			const dataRows = [];
 
 			for (let i = 0; i < GRID_SIZE; i++) {
+				// here X means left-side grid and Y means right-side grid
+
 				const elementX = data[gridX][i];
 				const elementY = data[gridY][i];
 

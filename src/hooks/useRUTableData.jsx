@@ -1,14 +1,19 @@
 import productsData from "@/data/dataset.json";
 import { checkDataValidity, separateDataGridWise } from "@/utils";
+import { RU_TABLE_CONSTANTS } from "@/constants";
+
+const { GRID_SIZE } = RU_TABLE_CONSTANTS;
 
 const parseDataAndArrangeProducts = (data) => {
+	// TODO: Efficient use of space (avoiding vertical placement of similar products)
+
 	const result = [];
 
 	// create grids placeholder of size 20 each
-	const grid1 = new Array(20).fill(null);
-	const grid2 = new Array(20).fill(null);
-	const grid3 = new Array(20).fill(null);
-	const grid4 = new Array(20).fill(null);
+	const grid1 = new Array(GRID_SIZE).fill(null);
+	const grid2 = new Array(GRID_SIZE).fill(null);
+	const grid3 = new Array(GRID_SIZE).fill(null);
+	const grid4 = new Array(GRID_SIZE).fill(null);
 
 	// function to check if no 2 products are adjacent to each other and then only place it in a grid
 	const placeProductInGrid = (product, grids) => {

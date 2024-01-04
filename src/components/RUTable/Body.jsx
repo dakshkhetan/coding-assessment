@@ -1,6 +1,7 @@
 import useRUTablePopulateRows from "@/hooks/useRUTablePopulateRows";
 import { RU_TABLE_CONSTANTS } from "@/constants";
 
+// RU Table Body component
 const Body = () => {
 	const { grid1And2DataRows, grid3And4DataRows, error } =
 		useRUTablePopulateRows();

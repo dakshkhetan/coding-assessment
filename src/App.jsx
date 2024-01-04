@@ -1,8 +1,12 @@
 import RUTable from "@/components/RUTable";
 
+import useWebsiteVisitNotifier from "@/hooks/useWebsiteVisitNotifier";
+
 import "@/styles/_global.scss";
 
 const App = () => {
+	useWebsiteVisitNotifier();
+
 	return (
 		<>
 			<div className="app">

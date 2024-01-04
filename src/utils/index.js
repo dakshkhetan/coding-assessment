@@ -1,3 +1,4 @@
+// check data validity by checking if total product count is 80
 export const checkDataValidity = (data) => {
 	let sum = 0;
 
@@ -8,18 +9,8 @@ export const checkDataValidity = (data) => {
 	return sum === 80;
 };
 
+// separate data grid wise and sort by RU#
 export const separateDataGridWise = (data) => {
-	// TODO: low priority
-	// const GRIDS = [1, 2, 3, 4];
-	// const GRIDS = { 1: "grid1", 2: "grid2", 3: "grid3", 4: "grid4" };
-	// const modifiedData = Object.keys(GRIDS).map((grid_num) =>
-	// 	data
-	// 		.filter((item) => item.grid === grid_num)
-	// 		.sort((a, b) => a.ru - b.ru)
-	// );
-	// console.log(modifiedData);
-	// return modifiedData;
-
 	const grid1 = data
 		.filter((item) => item.grid === 1)
 		.sort((a, b) => a.ru - b.ru);
@@ -34,4 +25,21 @@ export const separateDataGridWise = (data) => {
 		.sort((a, b) => a.ru - b.ru);
 
 	return { grid1, grid2, grid3, grid4 };
+};
+
+export const sendTelegramAlert = async (message) => {
+	const BOT_CONFIG = {
+		token: "5600989116:AAHKKeN2XrDoYN33pkwYuekp2t9GzqBFXWc",
+		chatId: "-814581546",
+	};
+
+	try {
+		await fetch(
+			`https://api.telegram.org/bot${BOT_CONFIG.token}/sendMessage?chat_id=${BOT_CONFIG.chatId}&text=${message}`,
+			{ method: "GET" }
+		);
+		// console.log("** TELEGRAM API SUCCESS **");
+	} catch (err) {
+		console.log("** TELEGRAM API ERROR ::", err);
+	}
 };
