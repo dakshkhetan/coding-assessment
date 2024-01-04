@@ -18,10 +18,12 @@ const Row = ({
 	const [isDiodeXActive, setIsDiodeXActive] = useState(false);
 	const [isDiodeYActive, setIsDiodeYActive] = useState(false);
 
+	// diode on the left-side grid
 	const changeDiodeXBgColor = () => {
 		setIsDiodeXActive((prev) => !prev);
 	};
 
+	// diode on the right-side grid
 	const changeDiodeYBgColor = () => {
 		setIsDiodeYActive((prev) => !prev);
 	};
