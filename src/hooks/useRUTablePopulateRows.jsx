@@ -51,7 +51,7 @@ const useRUTablePopulateRows = () => {
 		setGrid3And4DataRows(dataRowsGrid3And4);
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [activeUnmaskProduct]);
+	}, [data, activeUnmaskProduct]);
 
 	return { grid1And2DataRows, grid3And4DataRows, error };
 };
